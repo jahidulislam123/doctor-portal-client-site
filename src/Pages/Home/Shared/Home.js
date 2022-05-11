@@ -6,9 +6,10 @@ import MakeAppointment from '../MakeAppointment';
 import Services from '../Services';
 import Testomonials from '../Testomonials';
 import TextInput from '../TextInput';
+import Footer from './Footer';
 const Home = () => {
     return (
-        <div className='px-12'>
+        <div>
             <Bnner></Bnner>
             <Info></Info>
             <Services></Services>
@@ -16,6 +17,8 @@ const Home = () => {
             <MakeAppointment></MakeAppointment>
             <Testomonials></Testomonials>
             <TextInput></TextInput>
+            <Footer></Footer>
+
         </div>
     );
 };

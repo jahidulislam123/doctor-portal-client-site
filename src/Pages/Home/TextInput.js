@@ -8,7 +8,7 @@ const TextInput = () => {
             background:`url(${inputBack})`
         }}>
             
-<h2 className='font-bold text-3xl text-primary'>Contack Us</h2>
+<h2 className='font-bold text-2xl text-primary'>Contack Us</h2>
 <h3 className='text-white mb-2 text-2xl '>Stay Connected With Us</h3>
 <input type="text" placeholder="Email" class="input input-bordered input-sm w-full mb-2 max-w-xs" />
 
