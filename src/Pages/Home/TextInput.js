@@ -10,11 +10,11 @@ const TextInput = () => {
             
 <h2 className='font-bold text-2xl text-primary'>Contack Us</h2>
 <h3 className='text-white mb-2 text-2xl '>Stay Connected With Us</h3>
-<input type="text" placeholder="Email" class="input input-bordered input-sm w-full mb-2 max-w-xs" />
+<input type="text" placeholder="Email" className="input input-bordered input-sm w-full mb-2 max-w-xs" />
 
-<input type="text" placeholder="Subject" class="input input-bordered input-md w-full mb-2 max-w-xs" />
+<input type="text" placeholder="Subject" className="input input-bordered input-md w-full mb-2 max-w-xs" />
 
-<textarea type="text" placeholder="Your Message" class="input input-bordered input-lg w-full mb-2 max-w-xs" />
+<textarea type="text" placeholder="Your Message" className="input input-bordered input-lg w-full mb-2 max-w-xs" />
 <PrimaryButton >Submit</PrimaryButton>
         </div>
     );
