@@ -1,16 +1,37 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
+import Loading from '../Home/Shared/Loading';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [
+      signInWithEmailAndPassword,
+      user,
+      loading,
+      error,
+    ] = useSignInWithEmailAndPassword(auth);
 
-    if(user){
-        console.log(user);
+    let signInErrorMessage ;
+    if(error||gError){
+      signInErrorMessage =<p className='text-red-500'><small>{error?.message||gError?.message}</small></p>
     }
-    const onSubmit = data => console.log(data);
+    if(loading|| gLoading){
+      return <Loading></Loading>
+
+    }
+    if(user||gUser){
+        console.log(user||gUser);
+       
+    }
+    const onSubmit = data => {
+      console.log(data);
+      signInWithEmailAndPassword(data.email,data.password)
+
+    }
     return (
         <div className='flex h-screen justify-center items-center'>
            <div className="card w-96 bg-base-100 shadow-xl">
@@ -72,9 +93,10 @@ const Login = () => {
 
 
 
-           
+           {signInErrorMessage}
            <input className='btn w-full max-w-xs' type="submit"  value='Login'/>
             </form>
+            <p><small>New to doctors portal <Link className='text-primary' to='/singUp'>create new account</Link></small></p>
 
            <div className="divider">OR</div>
            <button
