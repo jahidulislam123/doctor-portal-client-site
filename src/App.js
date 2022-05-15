@@ -6,6 +6,7 @@ import Appoinment from './Pages/Appoinment/Appoinment';
 import Home from './Pages/Home/Shared/Home';
 import Navbar from './Pages/Home/Shared/Navbar';
 import Login from './Pages/Login/Login';
+import RequireAuth from './Pages/Login/RequireAuth';
 import SignUp from './Pages/Login/SignUp';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/singUp' element={<SignUp></SignUp>}></Route>
-        <Route path='/appoinment' element={<Appoinment></Appoinment>}></Route>
+        <Route path='/appoinment' element={<RequireAuth><Appoinment></Appoinment></RequireAuth>}></Route>
       </Routes>
       
     </div>
