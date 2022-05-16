@@ -4,10 +4,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const BookingModal = ({treatment,date,setTreatment}) => {
-
+const BookingModal = ({treatment,date,setTreatment,refetch}) => {
+  const [user, loading, error] = useAuthState(auth);
     const {_id,name,slots}=treatment;
-    const formattedDate = format(date,'pp');
+    const formattedDate = format(date,'PP');
     const handleBooking =event =>{
         event.preventDefault();
         const slot =event.target.slot.value;
@@ -22,6 +22,7 @@ const BookingModal = ({treatment,date,setTreatment}) => {
         phone:event.target.phone.value
 
       }
+      console.log(booking);
       fetch('http://localhost:5000/booking',{
         method:'POST',
         headers:{
@@ -40,13 +41,15 @@ const BookingModal = ({treatment,date,setTreatment}) => {
           toast.error(`You already have an appoinment on ,${data.booking?.date} at ${data.booking?.slot}`)
 
         }
+       
         setTreatment(null);
+        refetch();
       })
 
         
         
     }
-    const [user, loading, error] = useAuthState(auth);
+   
 
     return (
         <div>
