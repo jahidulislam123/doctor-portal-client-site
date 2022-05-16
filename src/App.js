@@ -10,6 +10,10 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import SignUp from './Pages/Login/SignUp';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyAppoinment from './Pages/Dashboard/MyAppoinment';
+import MyReview from './Pages/Dashboard/MyReview';
+
 
 
 function App() {
@@ -18,10 +22,16 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/about' element={<About></About>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/singUp' element={<SignUp></SignUp>}></Route>
-        <Route path='/appoinment' element={<RequireAuth><Appoinment></Appoinment></RequireAuth>}></Route>
+        <Route path='about' element={<About></About>}></Route>
+        <Route path='login' element={<Login></Login>}></Route>
+        <Route path='singUp' element={<SignUp></SignUp>}></Route>
+        <Route path='appoinment' element={<RequireAuth><Appoinment></Appoinment></RequireAuth>}></Route>
+        <Route path='dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
+           <Route index element={<MyAppoinment></MyAppoinment>}></Route>
+           <Route path='review' element={<MyReview></MyReview>}></Route>
+           
+           
+           </Route>
       </Routes>
       <ToastContainer></ToastContainer>
       

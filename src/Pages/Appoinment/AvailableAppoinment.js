@@ -7,23 +7,23 @@ import Loading from '../Home/Shared/Loading';
 
 const AvailableAppoinment = ({date}) => {
     const formattedDate =format(date,'PP');
-    const [services,setServices]=useState([]);
+    // const [services,setServices]=useState([]);
     const [treatment,setTreatment]= useState(null);
-    // const {data:services,isLoading,refetch}= useQuery(['available',formattedDate],()=>
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
-    //         .then(res=>res.json())
-    // )
-
-    // if(isLoading){
-    //     return <Loading></Loading>
-    // }
-    
-    
-    useEffect(()=>{
+    const {data:services,isLoading,refetch}= useQuery(['available',formattedDate],()=>
         fetch(`http://localhost:5000/available?date=${formattedDate}`)
-        .then(res=>res.json())
-        .then(data=>setServices(data))
-    },[formattedDate])
+            .then(res=>res.json())
+    )
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
+    
+    
+    // useEffect(()=>{
+    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    //     .then(res=>res.json())
+    //     .then(data=>setServices(data))
+    // },[formattedDate])
 
     return (
         <div>
@@ -42,7 +42,7 @@ const AvailableAppoinment = ({date}) => {
             date ={date}
             treatment={treatment}
             setTreatment={setTreatment}
-            // refetch={refetch}
+            refetch={refetch}
             ></BookingModal>}
         </div>
     );

@@ -24,7 +24,7 @@ const Login = () => {
         navigate (from,{replace:true})
        
     }
-    },[user,gUser,from,navigate])
+    },[user,gUser,navigate])
     let from =location.state?.from?.pathname || "/";
     let signInErrorMessage ;
     if(error||gError){
