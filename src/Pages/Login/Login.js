@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Home/Shared/Loading';
 import { Link ,useLocation,useNavigate} from 'react-router-dom';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -14,17 +15,20 @@ const Login = () => {
       loading,
       error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [token]=useToken(user||gUser);
+
+
     const navigate =useNavigate();
     const location =useLocation();
 
     // eta normally dicilam kintu ami warning katte giye stack overflow the eta useEffect er vitor theke niye asci 
     useEffect(()=>{
-      if(user||gUser){
+      if(token){
         // console.log(user||gUser);
         navigate (from,{replace:true})
        
     }
-    },[user,gUser,navigate])
+    },[token,navigate])
     let from =location.state?.from?.pathname || "/";
     let signInErrorMessage ;
     if(error||gError){
