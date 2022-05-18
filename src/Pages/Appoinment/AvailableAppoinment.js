@@ -10,7 +10,7 @@ const AvailableAppoinment = ({date}) => {
     // const [services,setServices]=useState([]);
     const [treatment,setTreatment]= useState(null);
     const {data:services,isLoading,refetch}= useQuery(['available',formattedDate],()=>
-        fetch(`http://localhost:5000/available?date=${formattedDate}`)
+        fetch(`https://pure-thicket-30912.herokuapp.com/available?date=${formattedDate}`)
             .then(res=>res.json())
     )
 
@@ -20,7 +20,7 @@ const AvailableAppoinment = ({date}) => {
     
     
     // useEffect(()=>{
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    //     fetch(`https://pure-thicket-30912.herokuapp.com/available?date=${formattedDate}`)
     //     .then(res=>res.json())
     //     .then(data=>setServices(data))
     // },[formattedDate])

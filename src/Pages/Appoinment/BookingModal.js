@@ -23,7 +23,7 @@ const BookingModal = ({treatment,date,setTreatment,refetch}) => {
 
       }
       console.log(booking);
-      fetch('http://localhost:5000/booking',{
+      fetch('https://pure-thicket-30912.herokuapp.com/booking',{
         method:'POST',
         headers:{
           'content-type':'application/json'
