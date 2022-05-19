@@ -6,11 +6,48 @@ import Loading from '../Home/Shared/Loading';
 const AddDoctor = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const {data:services,isLoading}=useQuery('services',()=>fetch('http://localhost:5000/services').then(res=>res.json()))
+    const {data:services,isLoading}=useQuery('services',()=>fetch('http://localhost:5000/services').then(res=>res.json()));
+
+    const imageStorageKey ='a175c2702bd336e98e64264cd0e92d8f';
+
+    /**
+     * 1:3 ways to store images
+     * 1: THIRD party storage //free open public storage is okay for practice projects
+     *  
+     * 2: your own storage in your own server (file system )
+     * 3: in my database in mongodb
+     * 3: database mongodb
+     * 4: YUP: to validate file : search yup file validation for react file validation 
+    */
     const onSubmit = async(data) => {
-        console.log(data);
+      const formData = new FormData();
+      const image =data.image[0];
+      formData.append('image', image);
+        const url =`https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url,{
+          method:'POST',
+          body:formData
+
+        })
+        .then(res=>res.json())
+        .then(result =>{
+          if(result.success){
+            const img =result.data.url;
+           
+            const doctor ={
+              name: data.name,
+              email :data.email,
+              speciality : data.speciality,
+              img:img
+
+
+            }
+          }
+          
+        })
+
         
-          console.log('data',data);
+          // console.log('data',data);
           // navigate('/appoinment')
   
       }
@@ -75,7 +112,7 @@ const AddDoctor = () => {
 
   </label>
 
-  <select {...register('speciality')} class="select w-full max-w-xs">
+  <select {...register('speciality')} class="select input-bordered w-full max-w-xs">
   {
       services.map(service=><option
       key={service._id}
