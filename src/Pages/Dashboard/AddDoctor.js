@@ -7,7 +7,7 @@ import Loading from '../Home/Shared/Loading';
 const AddDoctor = () => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
-    const {data:services,isLoading}=useQuery('services',()=>fetch('http://localhost:5000/services').then(res=>res.json()));
+    const {data:services,isLoading}=useQuery('services',()=>fetch('https://pure-thicket-30912.herokuapp.com/services').then(res=>res.json()));
 
     const imageStorageKey ='a175c2702bd336e98e64264cd0e92d8f';
 
@@ -44,7 +44,7 @@ const AddDoctor = () => {
 
             }
             //send to your database 
-            fetch('http://localhost:5000/doctor',{
+            fetch('https://pure-thicket-30912.herokuapp.com/doctor',{
               method:'POST',
               headers:{
                 'content-type':'application/json',
