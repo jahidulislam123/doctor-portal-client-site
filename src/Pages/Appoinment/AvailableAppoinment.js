@@ -33,6 +33,7 @@ const AvailableAppoinment = ({date}) => {
                     services?.map(service=><Service
                         key={service._id}
                         service={service}
+                        
                         setTreatment={setTreatment}
                         
                         ></Service>)
